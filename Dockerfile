@@ -5,6 +5,10 @@ ARG RAILS_ROOT=/usr/src/app
 # Set Rails environment.
 ENV RAILS_ENV production
 ENV BUNDLE_APP_CONFIG="$RAILS_ROOT/.bundle"
+ENV HTTP_PROXY=http://proxy.stusta.mhn.de:3128
+ENV HTTPS_PROXY=http://proxy.stusta.mhn.de:3128
+ENV http_proxy=http://proxy.stusta.mhn.de:3128
+ENV https_proxy=http://proxy.stusta.mhn.de:3128
 
 # Make the directory and set as working.
 RUN mkdir -p $RAILS_ROOT
@@ -43,7 +47,12 @@ ARG RAILS_ROOT=/usr/src/app
 ARG PACKAGES="tzdata curl postgresql-client sqlite-libs yarn nodejs bash"
 
 ENV RAILS_ENV=production
+ENV PORT=5000
 ENV BUNDLE_APP_CONFIG="$RAILS_ROOT/.bundle"
+ENV HTTP_PROXY=http://proxy.stusta.mhn.de:3128
+ENV HTTPS_PROXY=http://proxy.stusta.mhn.de:3128
+ENV http_proxy=http://proxy.stusta.mhn.de:3128
+ENV https_proxy=http://proxy.stusta.mhn.de:3128
 
 WORKDIR $RAILS_ROOT
 
@@ -55,7 +64,7 @@ RUN apk update \
 COPY --from=base $RAILS_ROOT $RAILS_ROOT
 
 # Expose port 80.
-EXPOSE 80
+EXPOSE 5000
 
 # Sets the footer of greenlight application with current build version
 ARG version_code
